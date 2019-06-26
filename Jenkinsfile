@@ -14,8 +14,9 @@ pipeline {
 		DOCKER_CACHE_IMAGE_VERSION = "latest"
 		dockerRepo = "testawssdkjavab"
 		applicationName = 'awsjavasdkpomb' // Same as artifactId in pom.xml
-		//applicationName = 'aws-java-sdk-pom-B' // Same as artifactId in pom.xml
-		package_shadded = '/var/lib/jenkins/workspace/test-aws-sdk-java-B/aws-java-sdk-bundle/target/aws-java-sdk-bundle-1.11.499-shaded.jar'
+		//applicationName = 'aws-java-sdk-pom' // Same as artifactId in pom.xml
+		//package_shadded = 'original-aws-java-sdk-bundle-1.11.499.jar' // '/var/lib/jenkins/workspace/test-aws-sdk-java/aws-java-sdk-bundle/target/aws-java-sdk-bundle-1.11.499-shaded.jar'
+		fake_jar = 'fakejar.jar'
 		AWS_REGION = "eu-west-1"
 		AWS_ACCOUNT_ID = "962109799108"
 		SONAR_ENDPOINT = "http://54.154.201.141:9000"
@@ -53,14 +54,14 @@ pipeline {
             }
         }
 	
-/*	
+	
 		stage('Unit test') {
             steps {
                 echo 'Unit testing ...'
 				sh 'mvn -T 1C test'
             }
         }
-
+/*
 		stage('Publish snapshot') {
             steps {
                 echo 'Publising into the snapshot repo ...'
@@ -76,8 +77,7 @@ pipeline {
 				sh 'mvn dependency-check:check'
             }
         }
-*/
-/*		
+		
 		stage('Sonar - Code Quality') {
             steps {
                 echo 'Check Code Quality ...'
@@ -99,7 +99,7 @@ pipeline {
 //				sh 'sed -i.bak \"s#BASIS_IMAGE#$dockerRegistry/$dockerRepo:$DOCKER_CACHE_IMAGE_VERSION#g\" dockerfile'
                 echo 'Building Docker image ...'
 				sh '$(aws ecr get-login --no-include-email --region $AWS_REGION)'
-				sh 'docker build --build-arg PACKAGE_SHADDED=${package_shadded} --build-arg PACKAGE_VERSION=${package_version} --build-arg APPLICATION_NAME=${applicationName} -t ${dockerRegistry}/${dockerRepo}:${package_version} .'
+				sh 'docker build --build-arg PACKAGE_VERSION=${package_version} --build-arg APPLICATION_NAME=${applicationName} -t ${dockerRegistry}/${dockerRepo}:${package_version} .'
 				//echo 'Removing dangling Docker image from the local registry ...'
 				//sh "docker rmi $(docker images --filter "dangling=true" -q --no-trunc) 2>/dev/null"
 				echo 'Publishing Docker image into the private registry ...'
