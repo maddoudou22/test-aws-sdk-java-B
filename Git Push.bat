@@ -1,9 +1,9 @@
 
 echo off
 
-SET nom_Projet_Git=test-aws-sdk-java
-SET URL_Projet_Git=https://github.com/maddoudou22/test-aws-sdk-java.git
-SET Repertoire_Local_Projet=C:\awsLambda\java\test-aws-sdk-java
+SET nom_Projet_Git=test-aws-sdk-java-b
+SET URL_Projet_Git=https://github.com/maddoudou22/test-aws-sdk-java-b.git
+SET Repertoire_Local_Projet=C:\awsLambda\java\test-aws-sdk-java-b
 
 cd %Repertoire_Local_Projet%
 

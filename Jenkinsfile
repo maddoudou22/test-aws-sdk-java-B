@@ -12,15 +12,15 @@ pipeline {
 		package_version = readMavenPom().getVersion()
 		dockerRegistry = "962109799108.dkr.ecr.eu-west-1.amazonaws.com"
 		DOCKER_CACHE_IMAGE_VERSION = "latest"
-		dockerRepo = "testawssdkjava"
-		applicationName = 'awsjavasdkpom' // Same as artifactId in pom.xml
-		//applicationName = 'aws-java-sdk-pom' // Same as artifactId in pom.xml
+		dockerRepo = "testawssdkjavab"
+		applicationName = 'awsjavasdkpomb' // Same as artifactId in pom.xml
+		//applicationName = 'aws-java-sdk-pom-B' // Same as artifactId in pom.xml
 		AWS_REGION = "eu-west-1"
 		AWS_ACCOUNT_ID = "962109799108"
 		SONAR_ENDPOINT = "http://54.154.201.141:9000"
 		//EC2_LOCAL_MAVEN_DEPENDENCIES_DIRECTORY = "/home/ubuntu/.m2"
 		EC2_LOCAL_MAVEN_DEPENDENCIES_DIRECTORY = "/var/lib/jenkins"
-		S3_BUCKET_MAVEN_DEPENDENCIES = "s3://jenkinsspotfleetmavencache/repo-aws-sdk-java/.m2/"
+		S3_BUCKET_MAVEN_DEPENDENCIES = "s3://jenkinsspotfleetmavencache/repo-aws-sdk-java-B/.m2/"
     }
 
 
