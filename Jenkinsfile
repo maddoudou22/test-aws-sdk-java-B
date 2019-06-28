@@ -22,7 +22,7 @@ pipeline {
 		SONAR_ENDPOINT = "http://54.154.201.141:9000"
 		//EC2_LOCAL_MAVEN_DEPENDENCIES_DIRECTORY = "/home/ubuntu/.m2"
 		EC2_LOCAL_MAVEN_DEPENDENCIES_DIRECTORY = "/var/lib/jenkins"
-		S3_BUCKET_MAVEN_DEPENDENCIES = "s3://jenkinsspotfleetmavencache/repo-aws-sdk-java-B/.m2/"
+		S3_BUCKET_MAVEN_DEPENDENCIES = "s3://jenkinsspotfleetmavencache/repo-aws-sdk-java/.m2/"
     }
 
 
@@ -53,8 +53,8 @@ pipeline {
 				//sh 'mvn -T 1C -Dmaven.test.skip=true dependency:purge-local-repository clean package'
             }
         }
-	
-	
+
+		
 		stage('Unit test') {
             steps {
                 echo 'Unit testing ...'
@@ -68,16 +68,16 @@ pipeline {
 				sh 'mvn jar:jar deploy:deploy'
             }
         }
-		
+*/		
 		stage('OWASP - Dependencies check') {
             steps {
                 echo 'Check OWASP dependencies ...'
 				//sh 'mvn dependency-check:purge'
 				//sh 'mvn dependency-check:aggregate'
-				sh 'mvn dependency-check:check'
+				sh 'mvn org.owasp:dependency-check-maven:5.0.0-M3:check -Dmaven.javadoc.failOnError=false'
             }
         }
-		
+/*
 		stage('Sonar - Code Quality') {
             steps {
                 echo 'Check Code Quality ...'
